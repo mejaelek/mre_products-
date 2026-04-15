@@ -1,0 +1,167 @@
+[
+  {
+    "id": "mre-001",
+    "name": "Mountain House 72-Hour Emergency Kit",
+    "category": "Camp Food",
+    "subcategory": "MRE Kits",
+    "brand": "Mountain House",
+    "price": 89.99,
+    "suggestedRetail": 109.99,
+    "description": "A complete 72-hour freeze-dried meal kit designed for backcountry emergencies and extended camping trips. Includes breakfast, lunch, and dinner for three full days. Just add hot or cold water.",
+    "details": {
+      "servings": 9,
+      "caloriesPerServing": 480,
+      "weight": "1.8 lbs",
+      "shelfLife": "30 years",
+      "prepTime": "10 minutes"
+    },
+    "includes": [
+      "3x Scrambled Eggs with Bacon (breakfast)",
+      "3x Chicken Noodle Soup (lunch)",
+      "3x Beef Stew with Vegetables (dinner)"
+    ],
+    "rating": 4.8,
+    "reviewCount": 312,
+    "inStock": true,
+    "image": "images/mre-mountain-house-72hr.jpg",
+    "tags": ["emergency", "freeze-dried", "lightweight", "long shelf life"]
+  },
+  {
+    "id": "mre-002",
+    "name": "XMRE 1300XT Single Meal Pack",
+    "category": "Camp Food",
+    "subcategory": "Single Meals",
+    "brand": "XMRE",
+    "price": 14.99,
+    "suggestedRetail": 17.99,
+    "description": "Military-grade single-serving MRE with an integrated flameless ration heater. No fire or stove needed — ideal for solo day hikes, survival kits, or emergency bags.",
+    "details": {
+      "servings": 1,
+      "caloriesPerServing": 1300,
+      "weight": "0.9 lbs",
+      "shelfLife": "5 years",
+      "prepTime": "12 minutes"
+    },
+    "includes": [
+      "Main entree (choice of chicken, beef, or vegetarian)",
+      "Side dish",
+      "Crackers and spread",
+      "Dessert",
+      "Beverage mix",
+      "Flameless heater"
+    ],
+    "rating": 4.5,
+    "reviewCount": 188,
+    "inStock": true,
+    "image": "images/mre-xmre-1300xt.jpg",
+    "tags": ["military-grade", "flameless heater", "single serving", "survival"]
+  },
+  {
+    "id": "mre-003",
+    "name": "Backpacker's Pantry 4-Day Meal Bundle",
+    "category": "Camp Food",
+    "subcategory": "MRE Kits",
+    "brand": "Backpacker's Pantry",
+    "price": 119.95,
+    "suggestedRetail": 139.95,
+    "description": "Four days of gourmet freeze-dried meals crafted for serious backpackers. Recipes developed with real chefs — this is camp food that actually tastes good. Lightweight pouches double as cooking vessels.",
+    "details": {
+      "servings": 12,
+      "caloriesPerServing": 510,
+      "weight": "2.4 lbs",
+      "shelfLife": "25 years",
+      "prepTime": "8 minutes"
+    },
+    "includes": [
+      "4x Granola with Blueberries and Milk (breakfast)",
+      "4x Pad Thai with Tofu (lunch)",
+      "4x Louisiana Red Beans and Rice (dinner)"
+    ],
+    "rating": 4.7,
+    "reviewCount": 245,
+    "inStock": true,
+    "image": "images/mre-backpackers-pantry-4day.jpg",
+    "tags": ["gourmet", "freeze-dried", "backpacking", "cook-in-pouch"]
+  },
+  {
+    "id": "mre-004",
+    "name": "Wise Company 1-Month Emergency Food Supply",
+    "category": "Camp Food",
+    "subcategory": "Emergency Supply",
+    "brand": "Wise Company",
+    "price": 299.00,
+    "suggestedRetail": 349.00,
+    "description": "A full 30-day emergency food supply packaged in a stackable, waterproof bucket. Ideal for home emergency preparedness, base camp setups, or extended off-grid living. Easy to store, easy to prepare.",
+    "details": {
+      "servings": 120,
+      "caloriesPerServing": 400,
+      "weight": "22 lbs",
+      "shelfLife": "25 years",
+      "prepTime": "15 minutes"
+    },
+    "includes": [
+      "Breakfasts: oatmeal, granola, and pancake mix",
+      "Lunches: soups, chili, and pasta",
+      "Dinners: rice dishes, stews, and casseroles",
+      "Snacks and desserts"
+    ],
+    "rating": 4.4,
+    "reviewCount": 97,
+    "inStock": true,
+    "image": "images/mre-wise-1month.jpg",
+    "tags": ["emergency supply", "bulk", "waterproof bucket", "family prep"]
+  },
+  {
+    "id": "mre-005",
+    "name": "Good To-Go Thai Curry — Single Serving",
+    "category": "Camp Food",
+    "subcategory": "Single Meals",
+    "brand": "Good To-Go",
+    "price": 11.95,
+    "suggestedRetail": 13.95,
+    "description": "Award-winning freeze-dried Thai curry made with real coconut milk, jasmine rice, and garden vegetables. Gluten-free and vegetarian. A fan favourite at trail running and thru-hiking events.",
+    "rating": 4.9,
+    "reviewCount": 403,
+    "details": {
+      "servings": 1,
+      "caloriesPerServing": 420,
+      "weight": "0.3 lbs",
+      "shelfLife": "5 years",
+      "prepTime": "20 minutes"
+    },
+    "includes": [
+      "Thai curry with jasmine rice",
+      "Coconut milk, sweet potato, kale, and chickpeas"
+    ],
+    "inStock": true,
+    "image": "images/mre-goodtogo-thaicurry.jpg",
+    "tags": ["gluten-free", "vegetarian", "gourmet", "award-winning"]
+  },
+  {
+    "id": "mre-006",
+    "name": "Trailtopia Gluten-Free 5-Day Pack",
+    "category": "Camp Food",
+    "subcategory": "MRE Kits",
+    "brand": "Trailtopia",
+    "price": 74.95,
+    "suggestedRetail": 89.95,
+    "description": "A fully gluten-free 5-day backcountry meal plan with high-calorie options designed for active hiking days. All meals are made without gluten-containing grains and packaged in resealable pouches.",
+    "details": {
+      "servings": 15,
+      "caloriesPerServing": 550,
+      "weight": "2.1 lbs",
+      "shelfLife": "5 years",
+      "prepTime": "10 minutes"
+    },
+    "includes": [
+      "5x Brown Sugar and Maple Oatmeal",
+      "5x Black Bean and Rice Bowl",
+      "5x Chicken and Sweet Potato Curry"
+    ],
+    "rating": 4.6,
+    "reviewCount": 134,
+    "inStock": false,
+    "image": "images/mre-trailtopia-glutenfree.jpg",
+    "tags": ["gluten-free", "high-calorie", "resealable", "5-day"]
+  }
+]
