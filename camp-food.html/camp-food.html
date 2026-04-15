@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camp Food & MREs | Sleep Outside</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --forest: #1e3a2f;
+      --forest-mid: #2d5443;
+      --moss: #4a7c59;
+      --sage: #7aab84;
+      --cream: #f5f0e8;
+      --sand: #e8dfc8;
+      --amber: #c8841a;
+      --amber-light: #f0a830;
+      --bark: #3d2b1f;
+      --white: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #5a5a5a;
+      --border: rgba(0,0,0,0.1);
+      --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--forest);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+    .nav-links a { color: rgba(245,240,232,0.75); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-cart {
+      background: var(--amber);
+      color: var(--white);
+      border: none;
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+    }
+
+    /* HERO BANNER */
+    .hero {
+      background: var(--forest);
+      background-image:
+        radial-gradient(ellipse at 80% 50%, rgba(74,124,89,0.3) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(30,58,47,0.8) 0%, transparent 50%);
+      padding: 3rem 2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      right: -60px;
+      top: -60px;
+      width: 320px;
+      height: 320px;
+      border: 40px solid rgba(74,124,89,0.15);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: 60px;
+      top: 20px;
+      width: 160px;
+      height: 160px;
+      border: 24px solid rgba(122,171,132,0.1);
+      border-radius: 50%;
+    }
+    .hero-breadcrumb {
+      font-size: 13px;
+      color: rgba(245,240,232,0.5);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.03em;
+    }
+    .hero-breadcrumb span { color: var(--sage); }
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.75rem;
+    }
+    .hero-title em { color: var(--amber-light); font-style: normal; }
+    .hero-sub {
+      font-size: 15px;
+      color: rgba(245,240,232,0.7);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-stat { text-align: left; }
+    .hero-stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--amber-light);
+      line-height: 1;
+    }
+    .hero-stat-label { font-size: 12px; color: rgba(245,240,232,0.55); margin-top: 2px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    /* MAIN LAYOUT */
+    .main { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+    /* FILTER BAR */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.75rem;
+      flex-wrap: wrap;
+    }
+    .filter-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
+    .filter-btn {
+      padding: 7px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      background: var(--white);
+      color: var(--text-muted);
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+    .filter-btn:hover { border-color: var(--moss); color: var(--moss); }
+    .filter-btn.active { background: var(--forest); color: var(--cream); border-color: var(--forest); }
+
+    .sort-select {
+      margin-left: auto;
+      padding: 7px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      background: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    /* RESULTS COUNT */
+    .results-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+    .results-count {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .results-count strong { color: var(--text); }
+
+    /* SEARCH */
+    .search-wrap {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .search-wrap svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
+    .search-input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.18s;
+    }
+    .search-input:focus { border-color: var(--moss); }
+
+    /* PRODUCT GRID */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+
+    .product-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: var(--sand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      position: relative;
+    }
+    .out-of-stock-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .out-of-stock-badge {
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 4px;
+    }
+
+    .product-body { padding: 1rem 1.1rem; flex: 1; display: flex; flex-direction: column; }
+
+    .product-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+    }
+    .product-subcategory {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--moss);
+      background: rgba(74,124,89,0.1);
+      padding: 3px 8px;
+      border-radius: 3px;
+    }
+    .product-shelf {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .product-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+      color: var(--bark);
+    }
+    .product-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+      flex: 1;
+    }
+
+    .product-details-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .product-detail-chip {
+      font-size: 11px;
+      color: var(--bark);
+      background: var(--sand);
+      padding: 3px 8px;
+      border-radius: 3px;
+      font-weight: 500;
+    }
+
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 0.75rem;
+    }
+    .stars { color: var(--amber); font-size: 13px; letter-spacing: 1px; }
+    .rating-num { font-size: 13px; font-weight: 500; }
+    .rating-count { font-size: 12px; color: var(--text-muted); }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+      margin-top: auto;
+    }
+    .product-price { display: flex; flex-direction: column; }
+    .price-current {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--forest);
+      line-height: 1;
+    }
+    .price-retail {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+    .add-btn {
+      background: var(--forest);
+      color: var(--cream);
+      border: none;
+      padding: 9px 18px;
+      border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+    .add-btn:hover { background: var(--forest-mid); }
+    .add-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+    /* TAGS */
+    .product-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 0.6rem;
+    }
+    .tag {
+      font-size: 11px;
+      color: var(--forest-mid);
+      border: 1px solid rgba(45,84,67,0.25);
+      padding: 2px 7px;
+      border-radius: 3px;
+    }
+
+    /* EMPTY STATE */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      grid-column: 1 / -1;
+    }
+    .empty-icon { font-size: 48px; margin-bottom: 1rem; }
+    .empty-title { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .empty-sub { font-size: 14px; color: var(--text-muted); }
+
+    /* FOOTER */
+    footer {
+      background: var(--forest);
+      color: rgba(245,240,232,0.6);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 13px;
+      margin-top: 3rem;
+    }
+    footer strong { color: var(--cream); }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .main { padding: 1.25rem; }
+      .hero { padding: 2rem 1.25rem; }
+      .filter-bar { gap: 8px; }
+      .sort-select { margin-left: 0; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">SLEEP OUTSIDE</a>
+  <ul class="nav-links">
+    <li><a href="product-list.html">All Products</a></li>
+    <li><a href="camp-food.html" style="color:#f0a830;">Camp Food</a></li>
+    <li><a href="cart.html">Cart</a></li>
+  </ul>
+  <button class="nav-cart">Cart (0)</button>
+</nav>
+
+<div class="hero">
+  <p class="hero-breadcrumb">Products &rsaquo; <span>Camp Food &amp; MREs</span></p>
+  <h1 class="hero-title">Camp Food<br>&amp; <em>MREs</em></h1>
+  <p class="hero-sub">Freeze-dried meals, military-grade rations, and gourmet backcountry food for any adventure length.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num" id="stat-products">6</div>
+      <div class="hero-stat-label">Products</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">30yr</div>
+      <div class="hero-stat-label">Max shelf life</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">4.6★</div>
+      <div class="hero-stat-label">Avg rating</div>
+    </div>
+  </div>
+</div>
+
+<main class="main">
+
+  <div class="search-wrap">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input class="search-input" id="searchInput" type="text" placeholder="Search camp food and MREs..." />
+  </div>
+
+  <div class="filter-bar">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="MRE Kits">MRE Kits</button>
+    <button class="filter-btn" data-filter="Single Meals">Single Meals</button>
+    <button class="filter-btn" data-filter="Emergency Supply">Emergency Supply</button>
+    <button class="filter-btn" data-filter="inStock">In Stock Only</button>
+    <select class="sort-select" id="sortSelect">
+      <option value="default">Sort: Featured</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+      <option value="rating">Highest Rated</option>
+      <option value="name">Name A–Z</option>
+    </select>
+  </div>
+
+  <div class="results-bar">
+    <p class="results-count">Showing <strong id="resultCount">6</strong> products</p>
+  </div>
+
+  <div class="product-grid" id="productGrid"></div>
+
+</main>
+
+<footer>
+  &copy; 2024 <strong>Sleep Outside</strong> — All rights reserved.
+</footer>
+
+<script>
+const products = [
+  {
+    id: "mre-001",
+    name: "Mountain House 72-Hour Emergency Kit",
+    subcategory: "MRE Kits",
+    brand: "Mountain House",
+    price: 89.99,
+    suggestedRetail: 109.99,
+    description: "A complete 72-hour freeze-dried meal kit for backcountry emergencies. Includes breakfast, lunch, and dinner for three full days. Just add water.",
+    details: { servings: 9, calories: 480, weight: "1.8 lbs", shelfLife: "30 years", prep: "10 min" },
+    rating: 4.8,
+    reviewCount: 312,
+    inStock: true,
+    emoji: "🏔️",
+    tags: ["emergency", "freeze-dried", "lightweight"]
+  },
+  {
+    id: "mre-002",
+    name: "XMRE 1300XT Single Meal Pack",
+    subcategory: "Single Meals",
+    brand: "XMRE",
+    price: 14.99,
+    suggestedRetail: 17.99,
+    description: "Military-grade single MRE with an integrated flameless ration heater. No stove needed — ideal for solo hikes or emergency bags.",
+    details: { servings: 1, calories: 1300, weight: "0.9 lbs", shelfLife: "5 years", prep: "12 min" },
+    rating: 4.5,
+    reviewCount: 188,
+    inStock: true,
+    emoji: "🎖️",
+    tags: ["military-grade", "flameless heater", "survival"]
+  },
+  {
+    id: "mre-003",
+    name: "Backpacker's Pantry 4-Day Bundle",
+    subcategory: "MRE Kits",
+    brand: "Backpacker's Pantry",
+    price: 119.95,
+    suggestedRetail: 139.95,
+    description: "Four days of gourmet freeze-dried meals crafted with real chefs. Pouches double as cooking vessels.",
+    details: { servings: 12, calories: 510, weight: "2.4 lbs", shelfLife: "25 years", prep: "8 min" },
+    rating: 4.7,
+    reviewCount: 245,
+    inStock: true,
+    emoji: "🍜",
+    tags: ["gourmet", "cook-in-pouch", "backpacking"]
+  },
+  {
+    id: "mre-004",
+    name: "Wise Company 1-Month Emergency Supply",
+    subcategory: "Emergency Supply",
+    brand: "Wise Company",
+    price: 299.00,
+    suggestedRetail: 349.00,
+    description: "A full 30-day emergency food supply in a stackable waterproof bucket. 120 servings of breakfasts, lunches, dinners, and snacks.",
+    details: { servings: 120, calories: 400, weight: "22 lbs", shelfLife: "25 years", prep: "15 min" },
+    rating: 4.4,
+    reviewCount: 97,
+    inStock: true,
+    emoji: "🪣",
+    tags: ["emergency supply", "bulk", "waterproof bucket"]
+  },
+  {
+    id: "mre-005",
+    name: "Good To-Go Thai Curry",
+    subcategory: "Single Meals",
+    brand: "Good To-Go",
+    price: 11.95,
+    suggestedRetail: 13.95,
+    description: "Award-winning freeze-dried Thai curry made with real coconut milk and jasmine rice. Gluten-free and vegetarian.",
+    details: { servings: 1, calories: 420, weight: "0.3 lbs", shelfLife: "5 years", prep: "20 min" },
+    rating: 4.9,
+    reviewCount: 403,
+    inStock: true,
+    emoji: "🍛",
+    tags: ["gluten-free", "vegetarian", "award-winning"]
+  },
+  {
+    id: "mre-006",
+    name: "Trailtopia Gluten-Free 5-Day Pack",
+    subcategory: "MRE Kits",
+    brand: "Trailtopia",
+    price: 74.95,
+    suggestedRetail: 89.95,
+    description: "Fully gluten-free 5-day backcountry meal plan with high-calorie options designed for active hiking days.",
+    details: { servings: 15, calories: 550, weight: "2.1 lbs", shelfLife: "5 years", prep: "10 min" },
+    rating: 4.6,
+    reviewCount: 134,
+    inStock: false,
+    emoji: "🌿",
+    tags: ["gluten-free", "high-calorie", "5-day"]
+  }
+];
+
+function renderStars(rating) {
+  const full = Math.floor(rating);
+  const half = rating % 1 >= 0.5 ? 1 : 0;
+  return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(5 - full - half);
+}
+
+function renderCard(p) {
+  const savings = p.suggestedRetail ? ((1 - p.price / p.suggestedRetail) * 100).toFixed(0) : null;
+  return `
+    <div class="product-card">
+      <div class="product-img">
+        <span>${p.emoji}</span>
+        ${!p.inStock ? `<div class="out-of-stock-overlay"><span class="out-of-stock-badge">Out of Stock</span></div>` : ''}
+      </div>
+      <div class="product-body">
+        <div class="product-meta">
+          <span class="product-subcategory">${p.subcategory}</span>
+          <span class="product-shelf">📅 ${p.details.shelfLife}</span>
+        </div>
+        <h2 class="product-name">${p.name}</h2>
+        <p class="product-desc">${p.description}</p>
+        <div class="product-details-row">
+          <span class="product-detail-chip">🍽 ${p.details.servings} serving${p.details.servings > 1 ? 's' : ''}</span>
+          <span class="product-detail-chip">🔥 ${p.details.calories} cal/srv</span>
+          <span class="product-detail-chip">⚖️ ${p.details.weight}</span>
+          <span class="product-detail-chip">⏱ ${p.details.prep}</span>
+        </div>
+        <div class="product-tags">
+          ${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+        <div class="product-rating">
+          <span class="stars">${renderStars(p.rating)}</span>
+          <span class="rating-num">${p.rating}</span>
+          <span class="rating-count">(${p.reviewCount})</span>
+        </div>
+        <div class="product-footer">
+          <div class="product-price">
+            <span class="price-current">$${p.price.toFixed(2)}</span>
+            ${p.suggestedRetail ? `<span class="price-retail">was $${p.suggestedRetail.toFixed(2)}</span>` : ''}
+          </div>
+          <button class="add-btn" ${!p.inStock ? 'disabled' : ''} onclick="addToCart('${p.id}')">
+            ${p.inStock ? 'Add to Cart' : 'Unavailable'}
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function getFiltered() {
+  const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const sort = document.getElementById('sortSelect').value;
+
+  let list = products.filter(p => {
+    const matchFilter =
+      activeFilter === 'all' ? true :
+      activeFilter === 'inStock' ? p.inStock :
+      p.subcategory === activeFilter;
+    const matchSearch =
+      !search ||
+      p.name.toLowerCase().includes(search) ||
+      p.description.toLowerCase().includes(search) ||
+      p.tags.some(t => t.toLowerCase().includes(search));
+    return matchFilter && matchSearch;
+  });
+
+  if (sort === 'price-asc') list = [...list].sort((a, b) => a.price - b.price);
+  else if (sort === 'price-desc') list = [...list].sort((a, b) => b.price - a.price);
+  else if (sort === 'rating') list = [...list].sort((a, b) => b.rating - a.rating);
+  else if (sort === 'name') list = [...list].sort((a, b) => a.name.localeCompare(b.name));
+
+  return list;
+}
+
+function render() {
+  const list = getFiltered();
+  const grid = document.getElementById('productGrid');
+  document.getElementById('resultCount').textContent = list.length;
+  document.getElementById('stat-products').textContent = list.length;
+  if (list.length === 0) {
+    grid.innerHTML = `<div class="empty-state">
+      <div class="empty-icon">🔍</div>
+      <div class="empty-title">No products found</div>
+      <div class="empty-sub">Try adjusting your filters or search term</div>
+    </div>`;
+  } else {
+    grid.innerHTML = list.map(renderCard).join('');
+  }
+}
+
+function addToCart(id) {
+  const p = products.find(x => x.id === id);
+  alert(`"${p.name}" added to cart!`);
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render();
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', render);
+document.getElementById('sortSelect').addEventListener('change', render);
+
+render();
+</script>
+</body>
+</html>
